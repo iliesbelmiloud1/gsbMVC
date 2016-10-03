@@ -5,6 +5,12 @@
  * @package default (mission 4)
  */
 
+// bibliothèques à utiliser
+require_once ('modele/App/Application.class.php');
+require_once ('modele/App/Notification.class.php');
+require_once ('modele/Render/AdminRender.class.php');
+require_once ('modele/Bll/Ouvrages.class.php');
+
 // récupération de l'action à effectuer
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
@@ -14,17 +20,25 @@ else {
 }
 
 // variables pour la gestion des messages
-$titrePage = 'Gestion des ouvrages';
+//$titrePage = 'Gestion des ouvrages';
 
-// variables pour la gestion des erreurs
-$tabErreurs = array(); 
-$hasErrors = false;
 
-// ouvrir une connexion
-$cnx = connectDB();
+// récupération de l'action à effectuer
+if (isset($_GET["action"])) {
+    $action = $_GET["action"];
+}
+else {
+    $action = 'listerOuvrages';
+}
+
+// si un id est passé en paramètre, créer un objet (pour consultation, modification ou suppression)
+if (isset($_REQUEST["id"])) {
+    $id = $_REQUEST["id"];
+    $unGenre = Genres::chargerGenreParID($id);
+}
 
 // charger la vue en fonction du choix de l'utilisateur
-switch ($action) {
+switch ($action) {/*
     case 'consulterOuvrage' : {
         if (isset($_GET["id"])) {
             $intID = intval(htmlentities($_GET["id"]));
@@ -449,24 +463,13 @@ switch ($action) {
                         .$intID.'">Retour à la consultation</a>';
             include 'vues/v_afficherErreurs.php';            
         }
-    } break;   
+    } break; */  
     case 'listerOuvrages' : {
         // récupérer les ouvrages
-        $strSQL = "SELECT no_ouvrage as ID, "
-                ."titre, "
-                ."lib_genre, "
-                ."auteur, "
-                ."salle, "
-                ."rayon, "
-                ."dernier_pret, "
-                ."disponibilite "
-                ."FROM v_ouvrages "
-                ."ORDER BY titre;";
-        $lesOuvrages = getRows($cnx, $strSQL, array());
+        $lesOuvrages=  Ouvrages::chargerLesOuvrages(1);
         // afficher le nombre de ouvrages
         $nbOuvrages = count($lesOuvrages);
         include 'vues/v_listeOuvrages.php';
     } break; 
 }
-// déconnexion
-disconnectDB($cnx);
+

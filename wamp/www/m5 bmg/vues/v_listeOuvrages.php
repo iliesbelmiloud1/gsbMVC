@@ -44,7 +44,7 @@
                         }
                         // afficher la colonne 1 dans un hyperlien
                         echo '<td><a href="index.php?uc=gererOuvrages&action=consulterOuvrage&id='
-                            .$ligne[0].'">'.$ligne[0].'</a></td>';
+                            .$unOuvrage->getId().'">'.$unOuvrage->getId().'</a></td>';
                         // afficher les colonnes suivantes
                         echo '<td>'.$ligne[1].'</td>';
                         echo '<td>'.$ligne[2].'</td>';
