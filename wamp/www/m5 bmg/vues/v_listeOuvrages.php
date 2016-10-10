@@ -26,16 +26,16 @@
                     echo '<tr>'
                             .'<th>ID</th>'
                             .'<th>Titre</th>'
-                            .'<th>Genre</th>'
+                            
                             .'<th>Auteur</th>'
-                            .'<th>Salle</th>'
-                            .'<th>Rayon</th>'
+                            .'<th>Nombre de pret</th>'
                             .'<th>Dernier prêt</th>'
-                            .'<th>Disponibilité</th>'
+                            .'<th>Etat</th>'
                             .'</tr>';
                     // affichage des lignes du tableau
                     $n = 0;
-                    foreach($lesOuvrages as $ligne)  {
+                    foreach($lesOuvrages as $unOuvrage)  {
+                        //var_dump($lesOuvrages);
                         if (($n % 2) == 1) {
                             echo '<tr class="impair">';
                         }
@@ -44,20 +44,30 @@
                         }
                         // afficher la colonne 1 dans un hyperlien
                         echo '<td><a href="index.php?uc=gererOuvrages&action=consulterOuvrage&id='
-                            .$unOuvrage->getId().'">'.$unOuvrage->getId().'</a></td>';
+                            .$unOuvrage->no_ouvrage.'">'.$unOuvrage->no_ouvrage.'</a></td>';
+                            
                         // afficher les colonnes suivantes
-                        echo '<td>'.$ligne[1].'</td>';
-                        echo '<td>'.$ligne[2].'</td>';
-                        if ($ligne[3] == 'Indéterminé') {
-                            echo '<td class="erreur">'.$ligne[3].'</td>';
+                        echo '<td>'.$unOuvrage->titre.'</td>';
+                        //echo '<td>'.$unOuvrage->disponibilite.'<td>';
+                        //echo '<td>'.$unOuvrage->auteur.'<td>';
+                        echo '<td>'.$unOuvrage->auteur.'</td>';
+                        echo '<td>'.$unOuvrage->no_ouvrage.'</td>';
+                        /*echo '<td>'.$unOuvrage->getTitre().'</td>';
+                        echo '<td>'.$auteur->getNom().'</td>';
+                        echo '<td>'.$unOuvrage->getNbPret().'</td>';
+                        echo '<td>'.$unOuvrage->getEtat().'</td>';
+                        echo '<td>'.$unOuvrage->getEtat().'</td>';
+                        /*if ($auteur->getNom() == 'Indéterminé') {
+                            echo '<td class="erreur">'.$unOuvrage->getSalle().'</td>';
                         }
                         else {
-                            echo '<td>'.$ligne[3].'</td>';
+                            echo '<td>'.$unOuvrage->getRayon().'</td>';
                         }
-                        echo '<td>'.$ligne[4].'</td>';
-                        echo '<td>'.$ligne[5].'</td>';
-                        echo '<td>'.$ligne[6].'</td>';
-                        if ($ligne[7] == 'D') {
+                        echo '<td>'.$unOuvrage->getRayon().'</td>';
+                        echo '<td>'.$unOuvrage->getRayon().'</td>';
+                        echo '<td>'.$unOuvrage->getRayon().'</td>';*/
+                     echo '<td>'.$unOuvrage->dernier_pret.'</td>';
+                        if ($unOuvrage->disponibilite == 'D') {
                             echo '<td class="center"><img src="img/dispo.png"</td>';
                         }
                         else {

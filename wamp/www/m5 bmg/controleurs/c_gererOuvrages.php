@@ -466,7 +466,7 @@ switch ($action) {/*
     } break; */  
     case 'listerOuvrages' : {
         // récupérer les ouvrages
-        $lesOuvrages=  Ouvrages::chargerLesOuvrages(1);
+        $lesOuvrages=  Ouvrages::chargerLesOuvrages(0);
         // afficher le nombre de ouvrages
         $nbOuvrages = count($lesOuvrages);
         include 'vues/v_listeOuvrages.php';

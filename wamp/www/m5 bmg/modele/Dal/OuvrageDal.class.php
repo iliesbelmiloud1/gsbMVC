@@ -22,9 +22,9 @@ class OuvrageDal {
      * @param  $style : 0 == tableau assoc, 1 == objet
      * @return  un objet de la classe PDOStatement
     */   
-    public static function loadOuvrage($style) {
+    public static function loadOuvrages($style) {
         $cnx = new PdoDao();
-        $qry = 'SELECT * FROM ouvrage';
+        $qry = 'SELECT * FROM v_ouvrages';
         $res = $cnx->getRows($qry,array(),$style);
         if (is_a($res,'PDOException')) {
             return PDO_EXCEPTION_VALUE;

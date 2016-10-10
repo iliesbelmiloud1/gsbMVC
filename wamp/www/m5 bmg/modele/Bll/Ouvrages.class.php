@@ -28,7 +28,7 @@ require_once ('./modele/Dal/OuvrageDal.class.php');
 // sollicite les services de la classe Application
 require_once ('./modele/App/Application.class.php');
 // sollicite la référence
-//require_once ('./modele/Reference/Ouvrage.class.php');
+require_once ('./modele/Reference/Ouvrage.class.php');
 
 class Ouvrages {
 
@@ -42,10 +42,11 @@ class Ouvrages {
      * @return  un tableau de type $mode 
      */    
     public static function chargerLesOuvrages($mode) {
-        $tab = OuvrageDal::loadOuvrage(0);
+        $tab = OuvrageDal::loadOuvrages(1);
         if (Application::dataOK($tab)) {
-            if ($mode == 0) {
+            if ($mode == 1) {
                 $res = array();
+                //var_dump($tab);
                 foreach ($tab as $ligne) {
                     $unOuvrage = new Ouvrage(
                             $ligne->no_ouvrage, 
