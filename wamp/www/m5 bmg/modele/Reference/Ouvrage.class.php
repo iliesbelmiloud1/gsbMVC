@@ -123,6 +123,8 @@ class Ouvrage {
         }
         return $res;
     }
+    
+    //public function getNbPret
 }
 
 
