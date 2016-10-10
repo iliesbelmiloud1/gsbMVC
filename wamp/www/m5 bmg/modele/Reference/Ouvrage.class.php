@@ -110,7 +110,7 @@ class Ouvrage {
     
     public function getAuteurs()
     {
-        $tab = OuvrageDal::loadAuteursByOuvrage($this->getNo());
+        $tab = OuvrageDal::loadAuteursByOuvrage($this->getNoOuvrage());
         $res = array();
         foreach ($tab as $ligne) {
             $unAuteur = AuteurDal::loadAuteurByID($ligne->id_auteur);
@@ -124,7 +124,7 @@ class Ouvrage {
         return $res;
     }
     
-    //public function getNbPret
+    
 }
 
 

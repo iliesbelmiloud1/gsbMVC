@@ -51,7 +51,7 @@
                         //echo '<td>'.$unOuvrage->disponibilite.'<td>';
                         //echo '<td>'.$unOuvrage->auteur.'<td>';
                         echo '<td>'.$unOuvrage->auteur.'</td>';
-                        echo '<td>'.$unOuvrage->no_ouvrage.'</td>';
+                        echo '<td>'.$unOuvrage->auteur.'</td>';
                         /*echo '<td>'.$unOuvrage->getTitre().'</td>';
                         echo '<td>'.$auteur->getNom().'</td>';
                         echo '<td>'.$unOuvrage->getNbPret().'</td>';

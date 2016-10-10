@@ -34,63 +34,20 @@ else {
 // si un id est passé en paramètre, créer un objet (pour consultation, modification ou suppression)
 if (isset($_REQUEST["id"])) {
     $id = $_REQUEST["id"];
-    $unGenre = Genres::chargerGenreParID($id);
+    $unOuvrage = Ouvrages::chargerOuvrageParID($id);
 }
 
 // charger la vue en fonction du choix de l'utilisateur
-switch ($action) {/*
+switch ($action) {
     case 'consulterOuvrage' : {
-        if (isset($_GET["id"])) {
-            $intID = intval(htmlentities($_GET["id"]));
-            // récupération des valeurs dans la base
-            $strSQL = "SELECT no_ouvrage as ID, "
-                    ."titre, "
-                    ."acquisition, "
-                    ."lib_genre, "
-                    ."salle, "
-                    ."rayon, "
-                    ."dernier_pret, "
-                    ."disponibilite, "
-                    ."auteur "
-                    ."FROM v_ouvrages "
-                    ."WHERE no_ouvrage = ".$intID;
-            try {
-                $lOuvrage = getRows($cnx, $strSQL, array($intID));
-                if ($lOuvrage) {
-                    $strTitre = $lOuvrage[0][1];
-                    $strAcquisition = $lOuvrage[0][2];
-                    $strGenre = $lOuvrage[0][3];
-                    $strSalle = $lOuvrage[0][4];
-                    $strRayon = $lOuvrage[0][5];
-                    $strDernierPret = $lOuvrage[0][6];
-                    $strDispo = $lOuvrage[0][7];
-                    $strAuteur = $lOuvrage[0][8];
-                }
-                else {
-                    $tabErreurs["Erreur"] = "Cet ouvrage n'existe pas !";
-                    $tabErreurs["ID"] = $intID;
-                    $hasErrors = true;
-                }                
-            }
-            catch (PDOException $e) {
-                $tabErreurs["Erreur"] = $e->getMessage();
-                $hasErrors = true;
-            }
-        }
-        else {
-            // pas d'id dans l'url ni clic sur Valider : c'est anormal
-            $tabErreurs["Erreur"] = 
-		"Aucun ouvrage n'a été transmis pour consultation !";
-            $hasErrors = true;
-        }
-        if ($hasErrors) {
-            $msg = "Une erreur s'est produite :";
-            include 'vues/v_afficherErreurs.php';
+        if ($unOuvrage == NULL) {
+            Application::addNotification(new Notification("Cet auteur n'existe pas !", ERROR));
         }
         else {
             include 'vues/v_consulterOuvrage.php';
         }
     } break;
+    /*
     case 'ajouterOuvrage' : {
         // initialisation des variables
         $strTitre = '';

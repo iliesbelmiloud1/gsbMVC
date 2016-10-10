@@ -46,4 +46,24 @@ class OuvrageDal {
         }
         return $res;
     } 
+    
+    public static function countNbPret($id) {
+        $cnx = new PdoDao();
+        $qry = 'SELECT count(*) FROM pret GROUP BY no_ouvrage';
+        $res = $cnx->getRows($qry,array($id),1);
+        if (is_a($res,'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    } 
+    
+    public static function loadAuteursByOuvrage($no){
+        $cnx = new PdoDao();
+        $qry = 'SELECT id_auteur FROM auteur_ouvrage WHERE no_ouvrage = ?';
+        $res = $cnx->getRows($qry,array($id),1);
+        if (is_a($res,'PDOException')) {
+            return PDO_EXCEPTION_VALUE;
+        }
+        return $res;
+    }
 }

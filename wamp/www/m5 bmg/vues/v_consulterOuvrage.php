@@ -22,10 +22,10 @@
                             ID :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $intID ?>
+                            <?php echo $unOuvrage->getNoOuvrage() ?>
                         </td>
                         <td class="right h-valeur" rowspan="8">
-                            <?php echo couvertureOuvrage($intID, $strTitre) ?>
+                            <?php//echo couvertureOuvrage($unOuvrage->getNoOuvkkjkljkjkljklrage(), $unOuvrage->getTitre()) ?>
                         </td>
                     </tr>
                     <tr>
@@ -33,7 +33,7 @@
                             Titre :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strTitre ?>
+                            <?php echo $unOuvrage->getTitre()?>
                         </td>
                     </tr>
                     <tr>
@@ -41,15 +41,22 @@
                             Auteur(s) :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strAuteur ?>
+                            
+                            <?php $lesAuteurs= $unOuvrage->getAuteurs();
+                            foreach($lesAuteurs as $auteur){
+                                $strAuteur += $auteur->getNom() .', ' ;
+                                
+                            }
+                            echo $strAuteur  ;
+?>
                         </td>
                     </tr>                                
-                    <tr>
+                    <!--<tr>
                         <td class="h-entete">
                             Date d'acquisition :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strAcquisition ?>
+                            <?php //echo $strAcquisition ?>
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +64,7 @@
                             Genre :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strGenre ?>
+                            <?php //echo $strGenre ?>
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +72,7 @@
                             Salle et rayon :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strSalle.', '.$strRayon ?>
+                            <?php //echo $strSalle.', '.$strRayon ?>
                         </td>
                     </tr>
                     <tr>
@@ -73,16 +80,16 @@
                             Dernier prêt :
                         </td>
                         <td class="h-valeur">
-                            <?php echo $strDernierPret ?>
+                           <?php //echo $strDernierPret ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr>-->
                         <td class="h-entete">
                             Disponibilité :
                         </td>
                         <td class="h-valeur">
                             <?php 
-                                if ($strDispo == "D") {
+                                if ($unOuvrage->getDisponibilte() == "D") {
                                     echo '<img src="img/dispo.png" alt="" />';
                                 }
                                 else {
